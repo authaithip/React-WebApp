@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 #root {
-    @apply flex flex-col min-h-screen;
+  @apply flex flex-col min-h-screen;
 }
 header {
-    @apply flex px-4 md:px-6 py-6 bg-blue-500 text-white items-center;
+  @apply flex px-4 md:px-6 py-6 bg-blue-500 text-white items-center;
 }
 body {
-    @apply bg-gray-100 antialiased;
+  @apply bg-gray-100 antialiased;
 }
 main {
-    @apply flex flex-col flex-1 justify-center place-items-center;
+  @apply flex flex-col flex-1 justify-center place-items-center;
 }
 footer {
-    @apply flex px-4 md:px-6 py-3 bg-slate-500 text-white items-center;
+  @apply flex px-4 md:px-6 py-3 bg-slate-500 text-white items-center;
 }
