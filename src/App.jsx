@@ -15,7 +15,7 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />       {/* path=* คือหน้าที่ไม่ได้ระบุ path จะให้ขึ้น 404 */}
       </Route>
     )
   );
