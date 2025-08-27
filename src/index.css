@@ -15,3 +15,6 @@ main {
 footer {
   @apply flex px-4 md:px-6 py-3 bg-slate-500 text-white items-center;
 }
+.todo-btn {
+  @apply p-1 bg-gray-100 rounded-sm text-gray-500 hover:bg-gray-200;
+}
