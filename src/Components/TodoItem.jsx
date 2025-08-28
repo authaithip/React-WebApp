@@ -4,16 +4,35 @@ import { useRef, useState } from "react";
 function TodoItem(props) {
   const dialog = useRef();
   const [editing, setEditing] = useState(false);
+  const [title, setTitle] = useState(props.todo.title);
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    if (editing) {
+      const task = {
+        title: title,
+        date: new Date().toLocaleString(),
+      };
+      console.log(task);
+      props.updateTask(task, props.id);
+    } else {
+      props.deleteTask(props.id);
+    }
+    closeModal();
+  };
+
   const openModal = (isEditing) => {
     isEditing ? setEditing(true) : setEditing(false);
     dialog.current.showModal();
   };
+
   const closeModal = () => [dialog.current.close()];
   const clickOutside = (e) => {
     if (e.target === dialog.current) {
       closeModal();
     }
   };
+
   return (
     <>
       <li className="flex bg-white rounded shadow-sm p-4 mt-4 first:mt-0">
@@ -46,14 +65,27 @@ function TodoItem(props) {
       <dialog
         ref={dialog}
         onClick={clickOutside}
-        className="rounded-md w-[480px"
+        className="rounded-md w-[480px fixed left-1/2 top-1/3 -translate-x-1/2 -translate-1/2 z-50"
       >
-        <form className="p-6">
+        <form onSubmit={submitForm} className="p-6">
           <h3 className="font-semibold text-xl">
             {editing ? "Edit Task" : "Do you want to Delete"}
           </h3>
           <div className="mt-2">
-            {editing ? "Edit" : "This will delete the task permanently."}
+            {editing ? (
+              <input
+                type="text"
+                className="focus:outline-none w-full border rounded py-2 px-3"
+                maxLength="30"
+                placeholder="Type Something here..."
+                autoFocus
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            ) : (
+              "This will delete the task permanently."
+            )}
           </div>
           <div className="mt-2 text-end space-x-2">
             <button
