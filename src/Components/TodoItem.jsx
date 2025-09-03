@@ -6,7 +6,7 @@ function TodoItem(props) {
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(props.todo.title);
 
-  const submitForm = (e) => {
+  const summitForm = (e) => {
     e.preventDefault();
     if (editing) {
       const task = {
@@ -18,6 +18,7 @@ function TodoItem(props) {
     } else {
       props.deleteTask(props.id);
     }
+
     closeModal();
   };
 
@@ -26,8 +27,8 @@ function TodoItem(props) {
     dialog.current.showModal();
   };
 
-  const closeModal = () => [dialog.current.close()];
-  const clickOutside = (e) => {
+  const closeModal = (e) => [dialog.current.close()];
+  const ClickOutside = (e) => {
     if (e.target === dialog.current) {
       closeModal();
     }
@@ -64,13 +65,14 @@ function TodoItem(props) {
       </li>
       <dialog
         ref={dialog}
-        onClick={clickOutside}
-        className="rounded-md w-[480px fixed left-1/2 top-1/3 -translate-x-1/2 -translate-1/2 z-50"
+        onClick={ClickOutside}
+        className="rounded-md w-[480px] fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 x-50"
       >
-        <form onSubmit={submitForm} className="p-6">
+        <form onSubmit={summitForm} className="p-6">
           <h3 className="font-semibold text-xl">
             {editing ? "Edit Task" : "Do you want to Delete"}
           </h3>
+
           <div className="mt-2">
             {editing ? (
               <input
@@ -87,6 +89,7 @@ function TodoItem(props) {
               "This will delete the task permanently."
             )}
           </div>
+
           <div className="mt-2 text-end space-x-2">
             <button
               type="submit"
@@ -96,14 +99,15 @@ function TodoItem(props) {
                   : "rounded bg-rose-500 px-3 py-2 text-white hover:bg-rose-600"
               }
             >
-              {editing ? "Confirm" : "delete"}
+              {editing ? "Comfirm" : "Delete"}
             </button>
+
             <button
               type="button"
               onClick={closeModal}
-              className="rounder border border-gray-200 px-3 py-2 hover:bg-gray-50"
+              className="rounded border-gray-200 px-3 py-2 hover:bg-gray-500"
             >
-              close
+              Close
             </button>
           </div>
         </form>

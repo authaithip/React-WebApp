@@ -2,16 +2,19 @@ import React, { useRef, useState } from "react";
 
 function NewTask({ addTask }) {
   //   const [title, setTitle] = useState("");
-  const title = useRef();    //ประกาศตัวแปร title เพื่ออ้างอิงถึง input field
-  const form = useRef();     //ประกาศตัวแปร form เพื่ออ้างอิงถึง form element
-  const submitForm = (e) => {   //ฟังก์ชันจัดการการ submitForm
-    e.preventDefault();   //ป้องกันการรีเฟรชหน้าเว็บเมื่อ submitForm
-    const task = {    //สร้างอ็อบเจ็กต์ task ใหม่
+  const title = useRef(); //ประกาศตัวแปร title เพื่ออ้างถึง input field
+  const form = useRef(); //ประกาศตัวแปร form เพื่ออ้างถึง form element
+  const submitForm = (e) => {
+    //  ฟังก์ชั่นจัดการ summit form
+    e.preventDefault(); //ป้องกันการรีเฟรชหน้าเว็ปเมื่อกด summit
+
+    const task = {
+      //สร้างอ็อปเจ็กต์ task ใหม่
       title: title.current.value,
       date: new Date().toLocaleString(),
     };
-    addTask(task);   //เรียกใช้ฟังก์ชัน addTask
-    form.current.reset();   //รีเซ็ตฟอร์มโดยการล้างค่าทั้งหมดในฟอร์ม
+    addTask(task); //เรียกใช้ฟังก์ชั่น
+    form.current.reset();
   };
   return (
     <>
@@ -28,7 +31,7 @@ function NewTask({ addTask }) {
             placeholder="Type Something here..."
             autoFocus
             required
-            ref={title}    //เชื่อมโยง input field กับตัวแปร title
+            ref={title} //เชื่อมโยง input field กับตัวแปร title
             // value={title}
             // onChange={(e) => setTitle(e.target.value)}
           />

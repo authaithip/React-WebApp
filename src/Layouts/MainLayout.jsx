@@ -11,9 +11,8 @@ function MainLayout() {
     <>
       <Navbar />
       <main>
-        <div className="px-4 md:px-6 pt-2 pb-24 w-full xl:w-[59%] space-y-6">
-          <Outlet />
-        </div>
+        <div className="px-4 md:px-6 pt-12 pb-8 w-full xl:w-[45%] space-y-6"></div>
+        <Outlet />
       </main>
       <Footer />
       <ToastContainer transition={Slide} />
